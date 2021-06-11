@@ -7,23 +7,6 @@ var selectBrewery;
 var saveList = []; //empty array for list of previously chosen breweries
 
 //FUNCTIONS
-//appends website image given url using link preview api
-function linkPreview(barLink, footer) {
-    // link-preview api key and query
-    var linkApiKey = "add99689022bb0b11c5fd0a126838bc8";
-    var linkQuery = "http://api.linkpreview.net/?key=" + linkApiKey + "&q=" + barLink;
-    console.log(linkQuery);
-
-    // ajax query to get the link-preview image from the website
-    $.ajax({
-        url: linkQuery,
-        method: "GET"
-    }).then(function (response) {
-        console.log(response);
-        var imageEl = $("<img>").attr("src", response.image).attr("class", "uk-align-right").width("150px").height("150px");
-        footer.append(imageEl);
-    });
-};
 
 function createCard(card) {
     //create data for brewery cards
@@ -31,10 +14,6 @@ function createCard(card) {
     var header = $("<div>").attr("class", "uk-card-header"); //card header
     var brewName = $("<h3>").attr("id", "brewNameEL").attr("class", "uk-card-title uk-margin-remove-bottom").html(card.name);
     var brewInfo = $("<div>").attr("uk-card-body"); //card body
-
-    //var brewImage = $("<img>").attr("src", "images/drunkweb.png").width("150px").height("150px");
-
-
     var brewType = $("<p>" + "<strong>Type: </strong>" + card.brewery_type + "</p>").attr("id", "brewType");
     var brewAddress = $("<p>" + "<strong>Address: </strong>" + card.street + "</p>").attr("id", "addressEl");
     var brewCity = $("<p>" + "<strong>City: </strong>" + card.city + ", " + card.state + " " + card.postal_code + "</p>").attr("id", "cityEl");
@@ -80,19 +59,6 @@ function breweryInfo(searchZip) {
             newCard.append(footer);
             footer.append(brewChoice);
             $("#mainContainer").append(newCard); //appending New Cards to main
-
-            // If/Else to call Link Preview for those breweries with websites; placeholder image for those without urls
-            if (response[i].website_url === "") { // the "" is from the openbrewery data object
-
-          // var noURL = $("<img>").attr("src", "./images/drunkweb.png").width("150px").height("150px");
-                var noURL = $("<img>").attr("src", "https://media.istockphoto.com/vectors/vector-white-and-yellow-vintage-brewing-company-label-vector-id606675834?k=6&m=606675834&s=612x612&w=0&h=lKCSg41oTyyAdhnnW8CYREZoCFP8kHX-Za8d7ybigFQ=").attr("class", "uk-align-right").width("150px").height("150px");
-                
-                footer.append(noURL);
-
-
-            } else {
-                linkPreview(response[i].website_url, footer); //calls linkPreview function
-            };
         }; //end loop
 
 
