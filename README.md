@@ -11,7 +11,7 @@ Brewfinder utilizes JQuery to create html elements for each set of brewery infor
 >   
 ## Demo
 
-![brewfinder](https://github.com/lauramparker/MVC-Hamburger/blob/main/images/MVC-Hamburgers.gif)
+![brewfinder](https://github.com/lauramparker/New-Brewfinder/blob/master/images/BREWFINDER.gif)
 
 ## Technologies Used
 - [jQuery](https://jquery.com/)
