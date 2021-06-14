@@ -25,7 +25,7 @@ To set-up the development environment, clone the repository found at https://git
 
 To run the application locally, enter node server. The app will  open on localhost port 3000.
 
-Alternatively, the app can be accessed on github pages: 
+Alternatively, the app can be accessed on github pages: [New-Brewfinder](https://lauramparker.github.io/New-Brewfinder/)
 
 ## Usage
 Use this project as an example of a simple JS / JQuery / Ajax application
