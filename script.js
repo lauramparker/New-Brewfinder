@@ -1,13 +1,26 @@
-//VARIABLES
-
 var searchZip;
-
 var selectBrewery;
-
 var saveList = []; //empty array for list of previously chosen breweries
 
-//FUNCTIONS
 
+//look for geolocation enabled on user's browser
+window.onload = function() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(getPosition);
+    }
+    else {
+        displayError("Please update browser to use geolocation.");
+    }
+};
+
+//get user's location
+function getPosition(pos) {
+    var lat = pos.coords.latitude;
+    var lon = pos.coords.longitude;
+}
+
+
+//create cards
 function createCard(card) {
     //create data for brewery cards
     var newCard = $("<div>").attr("class", "uk-card uk-card-default uk-width-1-2@m"); //card container
@@ -31,9 +44,7 @@ function createCard(card) {
     newCard.append(brewPhone);
     newCard.append(brewUrl);
     newCard.append("<br>");
-
     //newCard.append(brewImage);
-
     newCard.append(footer);
     newCard.css("margin", "20px");
     return newCard;
@@ -41,10 +52,14 @@ function createCard(card) {
 
 
 
-function breweryInfo(searchZip) {
+function breweryInfo(lat, lon) {
     $.ajax({
-        url: "https://api.openbrewerydb.org/breweries?by_postal=" + searchZip,
+        //by latitude & longitude
+        url: "https://api.openbrewerydb.org/breweries?by_dist=" + lat + "," + lon + "&page=1",
         method: "GET"
+        //by zipcode (original version)
+        // url: "https://api.openbrewerydb.org/breweries?by_postal=" + searchZip,
+        // method: "GET"
     }).then(function (response) {
         for (var i = 0; i < response.length; i++) {
             //create data for brewery cards
