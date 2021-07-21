@@ -1,4 +1,6 @@
 var searchZip;
+var lat;
+var lon;
 var selectBrewery;
 var saveList = []; //empty array for list of previously chosen breweries
 
@@ -15,8 +17,8 @@ window.onload = function() {
 
 //get user's location
 function getPosition(pos) {
-    var lat = pos.coords.latitude;
-    var lon = pos.coords.longitude;
+    lat = pos.coords.latitude;
+    lon = pos.coords.longitude;
 }
 
 
